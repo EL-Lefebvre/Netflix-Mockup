@@ -30,6 +30,10 @@ a user.
 
 In the project directory, you can run:
 
+### `npm i`
+
+Run in order to install all the necessary dependencies.
+
 ### `npm start`
 
 Runs the app in the development mode.<br />
