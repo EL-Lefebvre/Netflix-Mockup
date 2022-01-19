@@ -1,5 +1,31 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
+## CONCEPT
+
+This is project is a mockup of the streaming platform Netflix. We'll be using
+React, Redux, Material UI, MongoDB, Mongoose and NodeJs. Eventually, I would like to deploy this
+project on Netlify and Heroku to have a fully functioning website.
+
+Basically, just like Netflix, this project will list in a carousel format
+the different categories of movies and a suggestion of random movies at the
+top( The "most recent added"). We'll be calling an API in order to list these movies
+(https://developers.themoviedb.org/3/lists)
+
+After this is completed, I would like to allow user to be able to create,
+sign in and keep in a database their favorite movies. We will be using
+MongoDB as a noSQL database and Mongoose for the sign in logic.
+
+---
+
+I started out by using the command
+
+npx create-react-app netflix-mockup --template redux
+
+which builds the boilerplate for the React App and the one for Redux.
+We won't be needing Redux that much for the initial setup (calling the API and
+displaying the data), but it will come in handy to store in the Favorites of
+a user.
+
 ## Available Scripts
 
 In the project directory, you can run:
