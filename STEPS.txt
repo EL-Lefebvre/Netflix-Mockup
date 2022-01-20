@@ -1,0 +1,43 @@
+CREATING A REACT APP 
+
+Whenever creating a React App, the best analogy I have heard is basically building blocks - where the blocks are components. I haven't tried Angular but i vastly prefer
+React because it's actually pretty straight forward and when you understand Hooks (such as UseEffect, useState, useParams etc...) you pretty much can build anything, Front-
+End wise. There are a lot of concept use in React Native but it's still its own thing. 
+
+Building an app from the ground up isn't that difficult with the create-react-app command. Once you got that down, you just have to create to figure out how to divide
+the different sections of you application. In this context, I'm thinking of a Home Page, a Search Page and the user's Profile Page. We will focus on the Home/Landing Page
+for now. Here are the next few steps I had in mind to build it: 
+
+1. Call the API and fetch the data to have a full list of movies ( We will call it with axios and put it in the store)
+
+2. Once we have access to the data, it's time to bring this data to the Home Page for the user to see. We will create a very basic Home Page and then render an image and 
+the title of a few random movies, for now. We will try to display it so it wraps around and doesn't go outside of the page. 
+
+3.Then, what we could do is look into the API and see the different categories it has. Then filter and render movies according to their categories(like Netflix does)
+
+4. From there, we have the main content so it's time to make it pretty. I'd suggest looking into flexbow (https://flexboxfroggy.com/ >>> super useful and fun way to learn it)
+It will help a lot. I suggested Material UI for it but I don't know it that well so maybe for now we can stick to CSS and styled components (https://styled-components.com/)
+
+5. From there we will begin adding two more pages to our application: a Search Page and a User Page. 
+I will explain it to you more in detail but in order to be able to smoothly naviguate from one page to another, we will be using react-router-dom. 
+
+
+
+I know I am throwing a lot of new concepts at you, but we can take it one at the time. To reiterate here is what I suggest you look into:
+
+- 1. REACT HOOKS  --v important (https://reactjs.org/docs/hooks-intro.html)
+- 2. CSS & styled-components (https://styled-components.com/)
+- 3. FlexBox (https://flexboxfroggy.com/)
+- 4. react-router-dom , to naviguate throught the app (https://reactrouter.com/docs/en/v6/getting-started/overview) >> they JUST released V6
+- 5. and last but not least...
+
+                                                                 [[[[[[ REDUX ]]]]]]]
+
+Redux is a tool to  management and containe the ever changing state within your application.
+Whenever you are dealing with managing items in a store or call to action from the user is required, the state changes. 
+So in the context of an ecommerce store, let's say you add an item in your cart when you click the "ADD" button, this particular item, and its quantity, will be added
+to your Cart. 
+
+What is great about Redux is that wherever you are in your app, it will store the changed state in its store, which is incredibly practical if you have a website
+with multiple pages, subcategoris and more. You can also see in real time with the help of Redux Devtools(Chrome extension) you can see in a pretty direct manner
+when and what is being called and its changed state. 
