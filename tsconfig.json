@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "target": "es5",
+      "jsx": "react-jsx",
+      "alwaysStrict": false,
+      "noUnusedParameters": false,
+      "noImplicitReturns": false,
+      "noImplicitAny": false,
+      "strict": false,
+      "strictNullChecks": false,
+      "esModuleInterop": true,
+      "module": "commonjs",
+      "sourceMap": true
+    }
+  }

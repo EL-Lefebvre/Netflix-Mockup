@@ -13,9 +13,23 @@ const options = {
   },
 };
 
+
+const getPopularMovies = async (req, res) => {
+  const response = axios
+    .get(`${api_url}/movie/popular?api_key=${apiKey}&language=en-US`)
+    .then((response) => {
+      let genreList = response.data.genres;
+      setMoviesList(genreList);
+    });
+  const data = await response.json();
+
+  res.status(200).json({ status: 200, data });
+};
+
+
 const getGenreList = async (req, res) => {
   const response = axios
-    .get(`${api_url}/genre/movie/list?api_key=${apiKey}&language=en-US`)
+    .get(`${api_url}/genre/list?api_key=${apiKey}&language=en-US`)
     .then((response) => {
       let genreList = response.data.genres;
       setMoviesList(genreList);
@@ -43,17 +57,17 @@ const getMoviesList = async (req, res) => {
 
 
 //Get popular movies
-const getPopularMovies = async (req, res) => {
-  const id = req.params.id;
+// const getPopularMovies = async (req, res) => {
+//   const id = req.params.id;
 
-  const response = await fetch(
-    `${api_url}/${id}/information?apiKey=${apiKey}&includeNutrition=true`,
-    options
-  );
-  const data = await response.json();
+//   const response = await fetch(
+//     `${api_url}/${id}/information?apiKey=${apiKey}&includeNutrition=true`,
+//     options
+//   );
+//   const data = await response.json();
 
-  res.status(200).json({ status: 200, data });
-};
+//   res.status(200).json({ status: 200, data });
+// };
 
 //Search recipe by ingredients
 const searchRecipe = async (req, res) => {

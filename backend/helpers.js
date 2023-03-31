@@ -49,7 +49,7 @@ const getPostedRecipes = async (req, res) => {
   res.status(200).json({ status: 200, data: data });
 };
 
-const getFavorites = async (req, res) => {
+const getGenres = async (req, res) => {
   const user = req.params.user;
   const client = await MongoClient(MONGO_URI, options);
   await client.connect();
@@ -70,7 +70,7 @@ const getFavorites = async (req, res) => {
   client.close();
   res.status(200).json({ status: 200, data: data });
 };
-const addFavorite = async (req, res) => {
+const getMoviesList = async (req, res) => {
   const { username, recipeId } = req.body;
   const client = await MongoClient(MONGO_URI, options);
   await client.connect();

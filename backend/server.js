@@ -6,7 +6,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const PORT = process.env.PORT || 8000;
 
-const { getAllGenres } = require("./handlers");
+const { getGenreList } = require("./handlers");
 
 const app = express();
 
@@ -30,5 +30,5 @@ app.use(express.static("public"));
 //ROUTES
 app.get("/", (req, res) => {
   res.send("Port 8000 working");
-  getAllGenres;
+  getGenreList;
 });
