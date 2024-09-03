@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import MovieCard from "../features/components/MovieCard";
 import { Grid, Typography } from "@mui/material";
-
+import SearchBarContainer from "../features/components/SearchBar/SearchBarContainer";
 import "./Home.css";
 import MovieLists from "../features/components/MovieLists";
 const Home = () => {
@@ -22,7 +22,9 @@ const Home = () => {
   console.log(moviesList);
   return (
     <div>
-      <h1>Home Page</h1>
+      <div className="TopPadding">
+        <h1>Home Page</h1>
+      </div>
       <div className="Layout">
         <Grid container spacing={2}>
           {moviesList &&

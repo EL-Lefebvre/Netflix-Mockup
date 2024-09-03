@@ -4,8 +4,10 @@ import "./MovieCard.css";
 const MovieCard = ({ name, media, key }) => {
   return (
     <Card key={key} className="CardLayout">
-      <div></div>
+      <div className="MediaWrapper">
+
       <CardMedia className="Media" image={media} title={`${name}-image`} />
+      </div>
       <CardContent className="Title">
         <Typography variant="h6">{name}</Typography>
       </CardContent>

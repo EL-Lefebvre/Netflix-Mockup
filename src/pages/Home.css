@@ -2,6 +2,11 @@
 .Layout {
     display: flex;
     flex-wrap: wrap;
- 
+    justify-content: center;
+    padding: 40px; 
+    padding-top: 10px;
+}
+.TopPadding{  
+    padding-top: 80px;  
 
 }
