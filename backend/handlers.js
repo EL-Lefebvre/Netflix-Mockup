@@ -13,19 +13,23 @@ const options = {
   },
 };
 
+const axios = require("axios");
 
 const getPopularMovies = async (req, res) => {
-  const response = axios
-    .get(`${api_url}/movie/popular?api_key=${apiKey}&language=en-US`)
-    .then((response) => {
-      let genreList = response.data.genres;
-      setMoviesList(genreList);
-    });
-  const data = await response.json();
+  try {
+    // Fetch data from the API
+    const response = await axios.get(
+      `${api_url}/movie/popular?api_key=${apiKey}&language=en-US`
+    );
+    const genreList = response.data.results; // Adjust according to your API response structure
 
-  res.status(200).json({ status: 200, data });
+    // Send the data back to the client
+    res.status(200).json({ status: 200, data: genreList });
+  } catch (error) {
+    console.error("Error fetching popular movies:", error);
+    res.status(500).json({ status: 500, message: "Internal Server Error" });
+  }
 };
-
 
 const getGenreList = async (req, res) => {
   const response = axios
@@ -39,10 +43,6 @@ const getGenreList = async (req, res) => {
   res.status(200).json({ status: 200, data });
 };
 
-
-
-
-
 // Get movies by genre
 const getMoviesList = async (req, res) => {
   const response = await fetch(
@@ -53,8 +53,6 @@ const getMoviesList = async (req, res) => {
 
   res.status(200).json({ status: 200, data });
 };
-
-
 
 //Get popular movies
 // const getPopularMovies = async (req, res) => {
@@ -133,5 +131,4 @@ module.exports = {
   getGenreList,
   getMoviesList,
   getPopularMovies,
-
 };

@@ -1,11 +1,14 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import MovieCard from "../features/components/MovieCard";
 import { Grid, Typography } from "@mui/material";
 import SearchBarContainer from "../features/components/SearchBar/SearchBarContainer";
 import "./Home.css";
 import MovieLists from "../features/components/MovieLists";
+import { AppContext } from "../AppContext";
+
 const Home = () => {
+  const { data, loading, error } = useContext(AppContext);
   const [moviesList, setMoviesList] = useState([]);
   const imageUrl = "https://image.tmdb.org/t/p/w500";
   useEffect(() => {
@@ -18,8 +21,7 @@ const Home = () => {
         setMoviesList(genreList);
       });
   }, []);
-
-  console.log(moviesList);
+  console.log(data);
   return (
     <div>
       <div className="TopPadding">
