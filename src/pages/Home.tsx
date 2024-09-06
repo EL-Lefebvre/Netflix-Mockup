@@ -8,7 +8,7 @@ import MovieLists from "../features/components/MovieLists";
 import { AppContext } from "../AppContext";
 
 const Home = () => {
-  const { data, loading, error } = useContext(AppContext);
+  const { genres } = useContext(AppContext);
   const [moviesList, setMoviesList] = useState([]);
   const imageUrl = "https://image.tmdb.org/t/p/w500";
   useEffect(() => {
@@ -21,7 +21,8 @@ const Home = () => {
         setMoviesList(genreList);
       });
   }, []);
-  console.log(data);
+  console.log(genres);
+
   return (
     <div>
       <div className="TopPadding">

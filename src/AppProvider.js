@@ -1,7 +1,7 @@
-import React, { createContext, useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 
 import { AppContext } from "./AppContext";
+import { fetchGenres } from "./APIs/MoviesAPI";
 
 const AppProvider = ({ children }) => {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -10,10 +10,11 @@ const AppProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchGenres = async () => {
+    const getGenres = async () => {
       try {
-        const response = await axios.get("/"); // Adjust URL if needed
-        setGenres(response.data);
+        const response = await fetchGenres();
+
+        setGenres(response.genres);
       } catch (error) {
         setError(error);
       } finally {
@@ -21,13 +22,11 @@ const AppProvider = ({ children }) => {
       }
     };
 
-    fetchGenres();
+    getGenres();
   }, []);
 
   return (
-    <AppContext.Provider value={{ genres, loading, error }}>
-      {children}
-    </AppContext.Provider>
+    <AppContext.Provider value={{ genres }}>{children}</AppContext.Provider>
   );
 };
 

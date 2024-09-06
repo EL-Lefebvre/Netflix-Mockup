@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const apiKey = process.env.API_KEY;
-const api_url = "https://api.themoviedb.org/3/";
+const api_url = "https://api.themoviedb.org/3";
 const { MongoClient } = require("mongodb");
 
 const fetch = require("isomorphic-fetch");
@@ -19,9 +19,9 @@ const getPopularMovies = async (req, res) => {
   try {
     // Fetch data from the API
     const response = await axios.get(
-      `${api_url}/movie/popular?api_key=${apiKey}&language=en-US`
+      `${api_url}/movie/popular?api_key=1ae518329a5a523e1a0833feccb74a9d&language=en-US`
     );
-    const genreList = response.data.results; // Adjust according to your API response structure
+    const genreList = response.data; // Adjust according to your API response structure
 
     // Send the data back to the client
     res.status(200).json({ status: 200, data: genreList });
@@ -95,38 +95,7 @@ const filterRecipe = async (req, res) => {
 
   res.status(200).json({ status: 200, data });
 };
-//Get similar recipes as a particular one
 
-//Wine pairing with recipe
-
-//Post your own recipe
-
-// const newPost = async (req, res) => {
-//   await addingRecipe(req, res);
-// };
-// const getUserFavorites = async (req, res) => {
-//   await getFavorites(req, res);
-// };
-// const newFavorite = async (req, res) => {
-//   await addFavorite(req, res);
-// };
-// const newFavoriteUpdate = async (req, res) => {
-//   await updateFavorite(req, res);
-// };
-// const getPosts = async (req, res) => {
-//   await getPostedRecipes(req, res);
-// };
-// const infoBulk = async (req, res) => {
-//   const ids = req.params.ids;
-//   const api_url = "https://api.spoonacular.com/recipes";
-//   const response = await fetch(
-//     `${api_url}/informationBulk?apiKey=${apiKey}&ids=${ids}`,
-//     options
-//   );
-//   const data = await response.json();
-//   console.log(data);
-//   res.status(200).json({ status: 200, data });
-// };
 module.exports = {
   getGenreList,
   getMoviesList,
