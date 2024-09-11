@@ -1,12 +1,52 @@
-
 .Layout {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 40px; 
+    flex-direction: column;
+    padding: 40px;
     padding-top: 10px;
+    background-color: #141414;
+  }
+.Category {
+    display: flex;
+    flex-direction: column;
+    width: 100%; 
+    padding-top: 100px;
 }
-.TopPadding{  
-    padding-top: 80px;  
 
+.CategoryTitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: white; 
 }
+
+.MovieList {
+    width: 100%;
+    overflow: hidden;
+}
+
+.MovieCard {
+    flex: 0 1 250px; 
+    min-width: 200px; 
+    max-width: 300px; 
+    background-color: #1e1e1e; 
+    color: white; 
+    padding: 20px;
+    border-radius: 20px; 
+}
+
+  
+  
+.slick-slide{
+    max-width:310px;
+}
+ 
+  
+  .slick-slide img {
+    max-width: 300px;
+    height: auto;
+  }
+  
+
+  .slick-dots {
+    bottom: -30px;
+  }
+  

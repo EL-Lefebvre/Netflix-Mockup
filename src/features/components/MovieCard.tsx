@@ -1,16 +1,18 @@
 import React from "react";
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Card, CardMedia, Typography } from "@mui/material";
 import "./MovieCard.css";
-const MovieCard = ({ name, media, key }) => {
-  return (
-    <Card key={key} className="CardLayout">
-      <div className="MediaWrapper">
 
-      <CardMedia className="Media" image={media} title={`${name}-image`} />
+const MovieCard = ({ name, media }) => {
+  return (
+    <Card className="CardLayout">
+      <div className="MediaWrapper">
+        <CardMedia className="Media" image={media} title={`${name}-image`} />
+        <div className="MovieCardOverlay">
+          <Typography variant="h6" className="MovieCardTitle">
+            {name}
+          </Typography>
+        </div>
       </div>
-      <CardContent className="Title">
-        <Typography variant="h6">{name}</Typography>
-      </CardContent>
     </Card>
   );
 };
