@@ -1,7 +1,7 @@
 .CardLayout {
     position: relative;
 
-    width: 300px;
+    width: 250px;
     height: 150px;
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
@@ -33,7 +33,7 @@
     opacity: 0;
     transition: opacity 0.3s ease;
     text-align: center;
-    padding: 10px;
+
   }
   
   .CardLayout:hover .MovieCardOverlay {
