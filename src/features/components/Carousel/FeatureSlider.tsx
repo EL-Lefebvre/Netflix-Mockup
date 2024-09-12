@@ -1,12 +1,13 @@
-// FeatureSlider.js
 import Slider from "react-slick";
-import MovieCard from "../MovieCard"; // Adjust path if needed
-import { PrevArrow, NextArrow } from "../Carousel/Arrows"; // Adjust path if needed
+import MovieCard from "../MovieCard";
+import { PrevArrow, NextArrow } from "../Carousel/Arrows";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./FeatureSlider.css";
 
-const FeatureSlider = ({ movies, genres, imageUrl }) => {
+const FeatureSlider = ({ movies, genres }) => {
+  const imageUrl = "https://image.tmdb.org/t/p/w500";
+
   const settings = {
     dots: true,
     infinite: false,
@@ -16,6 +17,7 @@ const FeatureSlider = ({ movies, genres, imageUrl }) => {
     centerMode: false,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
+
     responsive: [
       {
         breakpoint: 1024,

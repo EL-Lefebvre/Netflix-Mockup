@@ -4,7 +4,6 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const arrowStyle = {
-  position: "absolute",
   top: "50%",
   transform: "translateY(-50%)",
   background: "rgba(0, 0, 0, 0.5)",
@@ -16,19 +15,21 @@ const arrowStyle = {
   height: "35px",
   width: "35px",
 };
+
 export const PrevArrow = (props: any) => {
   const { className, onClick } = props;
+  const isDisabled = className?.includes("slick-disabled");
+
   return (
     <IconButton
-      className={className}
-      onClick={onClick}
+      className={`${className}`}
+      onClick={isDisabled ? undefined : onClick}
       style={{
         ...arrowStyle,
         left: 10,
+        opacity: isDisabled ? 0 : 1,
+        cursor: isDisabled ? "default" : "pointer",
         position: "absolute",
-        top: "50%",
-        right: "10px",
-        zIndex: 1,
       }}
     >
       <ArrowBackIosNewIcon />
@@ -38,17 +39,18 @@ export const PrevArrow = (props: any) => {
 
 export const NextArrow = (props: any) => {
   const { className, onClick } = props;
+  const isDisabled = className?.includes("slick-disabled");
+
   return (
     <IconButton
-      className={className}
-      onClick={onClick}
+      className={`${className} nextArrow`}
+      onClick={isDisabled ? undefined : onClick}
       style={{
         ...arrowStyle,
         right: 10,
+        opacity: isDisabled ? 0.5 : 1,
+        cursor: isDisabled ? "default" : "pointer",
         position: "absolute",
-        top: "50%",
-
-        zIndex: 1,
       }}
     >
       <ArrowForwardIosIcon />
