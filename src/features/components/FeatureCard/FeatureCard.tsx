@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardMedia, Typography } from "@mui/material";
-import "./MovieCard.css";
+import "./FeatureCard.css";
 
 const MovieCard = ({ name, media }) => {
   return (

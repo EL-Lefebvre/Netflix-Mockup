@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import SearchBarContainer from "../features/components/SearchBar/SearchBarContainer";
+import NavBarContainer from "../features/components/NavBar/NavBarContainer";
 import Home from "./Home";
 function App() {
   return (
     <Router>
       <div className="App">
-        <SearchBarContainer />
+        <NavBarContainer />
         <div className="content">
           <Routes>
             <Route path="/" element={<Home />} />

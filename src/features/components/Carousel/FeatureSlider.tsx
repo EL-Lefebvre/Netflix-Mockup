@@ -1,5 +1,5 @@
 import Slider from "react-slick";
-import MovieCard from "../MovieCard";
+import FeatureCard from "../FeatureCard/FeatureCard";
 import { PrevArrow, NextArrow } from "../Carousel/Arrows";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -108,7 +108,7 @@ const FeatureSlider = ({ movies, genres }) => {
           <div className="MovieList">
             <Slider {...settings}>
               {moviesByFirstGenre[genreName].map((movie) => (
-                <MovieCard
+                <FeatureCard
                   name={movie.original_title}
                   media={`${imageUrl}${movie.backdrop_path}`}
                   key={movie.id}

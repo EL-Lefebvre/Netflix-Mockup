@@ -1,0 +1,33 @@
+.NavLayout {
+    display: flex;
+    align-items: center;
+    padding: 0 20px; /* Add padding for better alignment */
+    background-color: #141414;
+}
+.TitleContainer {
+    margin-right: 20px; /* Add margin to the right of the title */
+  }
+.NavItems {
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+}
+
+.Spacer {
+
+    flex-grow: 1;
+}
+.SearchContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between the icon and the search input */
+}
+
+.SearchIcon {
+    width: 20px;
+    height: 20px;
+    color: white; /* Adjust color as needed */
+}
+
+
+
