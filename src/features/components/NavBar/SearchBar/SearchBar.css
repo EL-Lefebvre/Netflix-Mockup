@@ -1,0 +1,30 @@
+.search-bar {
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .searchButton {
+    color: white; 
+  }
+  
+  .close-icon-button {
+    color: white;
+  }
+  .search-input-container {
+    display: flex;
+    align-items: center;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    width: 0; 
+  }
+  
+  .search-bar.open .search-input-container {
+    width: 200px; 
+  }
+  
+  .search-input-container .MuiTextField-root {
+    width: 100%; 
+  }
+  
