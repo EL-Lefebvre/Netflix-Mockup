@@ -1,12 +1,17 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
 
-import { fetchGenres, fetchPopularMovies } from "./APIs/MoviesAPI";
+import {
+  fetchGenres,
+  fetchPopularMovies,
+  fetchPopularTVShows,
+} from "./APIs/MoviesAPI";
 import { Genre, Movie, AppContextType } from "./types";
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 const AppProvider = ({ children }) => {
   const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
+  const [popularTVShows, setPopularTVShows] = useState<Movie[]>([]);
   const [genres, setGenres] = useState<Genre[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -36,13 +41,33 @@ const AppProvider = ({ children }) => {
         setLoading(false);
       }
     };
+    const getPopularTVShows = async () => {
+      try {
+        const pagesToFetch = [1, 2, 3, 4, 5];
+        const response = await fetchPopularTVShows(pagesToFetch);
+
+        console.log(response);
+        setPopularTVShows(response);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
     getGenres();
     getPopularMovies();
+    getPopularTVShows();
   }, []);
-
+  console.log(popularTVShows);
   return (
     <AppContext.Provider
-      value={{ genres, popularMovies, setGenres, setPopularMovies }}
+      value={{
+        genres,
+        popularMovies,
+        popularTVShows,
+        setGenres,
+        setPopularMovies,
+      }}
     >
       {children}
     </AppContext.Provider>

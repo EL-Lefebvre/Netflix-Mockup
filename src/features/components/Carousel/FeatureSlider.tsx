@@ -36,7 +36,6 @@ const FeatureSlider = ({ movies, genres }) => {
     ],
   };
 
-  // Logic to only show 5 movies on carousel/slider
   const groupMoviesByGenresWithLimit = (movies, genres) => {
     const maxMoviesPerGenre = 8;
     const maxGenres = 5;
@@ -51,6 +50,8 @@ const FeatureSlider = ({ movies, genres }) => {
     let genreCount = 0;
 
     movies.forEach((movie) => {
+      if (!movie.genre_ids || movie.genre_ids.length === 0) return;
+
       let addedToGenre = false;
 
       for (const genreId of movie.genre_ids) {
@@ -63,6 +64,7 @@ const FeatureSlider = ({ movies, genres }) => {
           genreCount++;
         }
 
+        // Add the movie to the genre group if it's within the limit
         if (genreCounts[genreName] < maxMoviesPerGenre) {
           genreGroups[genreName].push(movie);
           genreCounts[genreName]++;
@@ -71,17 +73,22 @@ const FeatureSlider = ({ movies, genres }) => {
         }
       }
 
+      // Handle movies with undefined genre_ids or if no genre was assigned
       if (!addedToGenre) {
         const firstGenreId = movie.genre_ids[0];
         const firstGenreName = genreMap[firstGenreId];
 
-        if (!genreGroups[firstGenreName]) {
+        if (
+          firstGenreName &&
+          !genreGroups[firstGenreName] &&
+          genreCount < maxGenres
+        ) {
           genreGroups[firstGenreName] = [];
           genreCounts[firstGenreName] = 0;
           genreCount++;
         }
 
-        if (genreCounts[firstGenreName] < maxMoviesPerGenre) {
+        if (firstGenreName && genreCounts[firstGenreName] < maxMoviesPerGenre) {
           genreGroups[firstGenreName].push(movie);
           genreCounts[firstGenreName]++;
         }
@@ -109,7 +116,7 @@ const FeatureSlider = ({ movies, genres }) => {
             <Slider {...settings}>
               {moviesByFirstGenre[genreName].map((movie) => (
                 <FeatureCard
-                  name={movie.original_title}
+                  name={movie.original_title || movie.name}
                   media={`${imageUrl}${movie.backdrop_path}`}
                   key={movie.id}
                 />

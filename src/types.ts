@@ -14,6 +14,7 @@ export interface Genre {
   export interface AppContextType {
     genres: Genre[] | any
     popularMovies: Movie[] | any;
+    popularTVShows: Movie[] | any;
     setGenres: (genres: Genre[]) => void;
     setPopularMovies: (movies: Movie[]) => void;
 

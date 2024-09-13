@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import NavBarContainer from "../features/components/NavBar/NavBarContainer";
 import Home from "./Home";
+import TVShows from "./TVShows";
+import SearchResults from "./SearchResults";
 import Footer from "../features/components/Footer/Footer";
 function App() {
   return (
@@ -12,8 +14,9 @@ function App() {
         <div className="content">
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} /> */}
+            <Route path="/tvshows" element={<TVShows />} />
+            <Route path="/search" element={<SearchResults />} />
+            <Route path="*" element={<Home />} />
           </Routes>
           <Footer />
         </div>
