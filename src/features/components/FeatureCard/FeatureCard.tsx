@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardMedia, Typography } from "@mui/material";
 import "./FeatureCard.css";
 
-const MovieCard = ({ name, media }) => {
+const FeatureCard = ({ name, media }) => {
   return (
     <Card className="CardLayout">
       <div className="MediaWrapper">
@@ -17,4 +17,4 @@ const MovieCard = ({ name, media }) => {
   );
 };
 
-export default MovieCard;
+export default FeatureCard;

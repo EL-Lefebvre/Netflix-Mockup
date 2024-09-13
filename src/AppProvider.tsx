@@ -1,26 +1,29 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
-
 import {
   fetchGenres,
   fetchPopularMovies,
   fetchPopularTVShows,
+  fetchSearch, // Import the search API function
 } from "./APIs/MoviesAPI";
 import { Genre, Movie, AppContextType } from "./types";
 
+// Create the context
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 const AppProvider = ({ children }) => {
   const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
   const [popularTVShows, setPopularTVShows] = useState<Movie[]>([]);
   const [genres, setGenres] = useState<Genre[]>([]);
+  const [searchResults, setSearchResults] = useState<Movie[]>([]); // State for search results
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<any>(null);
+  const [currentPage, setCurrentPage] = useState<string>("/home"); // State for current page
 
+  // Fetch genres, movies, and TV shows
   useEffect(() => {
     const getGenres = async () => {
       try {
         const response = await fetchGenres();
-
         setGenres(response.genres);
       } catch (error) {
         setError(error);
@@ -28,12 +31,11 @@ const AppProvider = ({ children }) => {
         setLoading(false);
       }
     };
+
     const getPopularMovies = async () => {
       try {
         const pagesToFetch = [1, 2, 3, 4, 5];
         const response = await fetchPopularMovies(pagesToFetch);
-
-        console.log(response);
         setPopularMovies(response);
       } catch (error) {
         setError(error);
@@ -41,12 +43,11 @@ const AppProvider = ({ children }) => {
         setLoading(false);
       }
     };
+
     const getPopularTVShows = async () => {
       try {
         const pagesToFetch = [1, 2, 3, 4, 5];
         const response = await fetchPopularTVShows(pagesToFetch);
-
-        console.log(response);
         setPopularTVShows(response);
       } catch (error) {
         setError(error);
@@ -54,17 +55,35 @@ const AppProvider = ({ children }) => {
         setLoading(false);
       }
     };
+
     getGenres();
     getPopularMovies();
     getPopularTVShows();
   }, []);
-  console.log(popularTVShows);
+
+  // Function to perform search by keyword
+  const searchMoviesByKeyword = async (keyword: string, pages = [1]) => {
+    try {
+      setLoading(true);
+      const response = await fetchSearch(keyword, pages);
+      setSearchResults(response);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
         genres,
         popularMovies,
         popularTVShows,
+        searchResults,
+        searchMoviesByKeyword,
+        currentPage,
+        setCurrentPage,
         setGenres,
         setPopularMovies,
       }}

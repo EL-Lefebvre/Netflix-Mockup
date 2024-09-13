@@ -15,8 +15,11 @@ export interface Genre {
     genres: Genre[] | any
     popularMovies: Movie[] | any;
     popularTVShows: Movie[] | any;
+    searchResults: any;
     setGenres: (genres: Genre[]) => void;
     setPopularMovies: (movies: Movie[]) => void;
-
+    searchMoviesByKeyword:any;
+    currentPage:string|any;
+    setCurrentPage:any;
   }
   

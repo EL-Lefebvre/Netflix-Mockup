@@ -23,7 +23,6 @@ const fetchPopularMovies = async (pages = [1]) => {
 
     const responses = await Promise.all(requests);
 
-    // Use a Set to track unique movie IDs
     const uniqueMovieIds = new Set();
     const allMovies = [];
 
@@ -72,4 +71,40 @@ const fetchPopularTVShows = async (pages = [1]) => {
     return [];
   }
 };
-export { fetchGenres, fetchPopularMovies, fetchPopularTVShows };
+const fetchSearch = async (keyword, pages = [1]) => {
+  if (!keyword) {
+    console.error("Keyword is required for search.");
+    return [];
+  }
+
+  try {
+    const requests = pages.map((page) =>
+      axios.get(
+        `${api_url}/search/keyword?api_key=${apiKey}&query=${encodeURIComponent(
+          keyword
+        )}&language=en-US&page=${page}`
+      )
+    );
+
+    const responses = await Promise.all(requests);
+
+    const uniqueMovieIds = new Set();
+    const allMovies = [];
+
+    responses.forEach((response) => {
+      response.data.results.forEach((movie) => {
+        if (!uniqueMovieIds.has(movie.id)) {
+          uniqueMovieIds.add(movie.id);
+          allMovies.push(movie);
+        }
+      });
+    });
+
+    return allMovies;
+  } catch (error) {
+    console.error("Error fetching movies by keyword:", error);
+    return [];
+  }
+};
+
+export { fetchGenres, fetchSearch, fetchPopularMovies, fetchPopularTVShows };
