@@ -80,7 +80,7 @@ const fetchSearch = async (keyword, pages = [1]) => {
   try {
     const requests = pages.map((page) =>
       axios.get(
-        `${api_url}/search/keyword?api_key=${apiKey}&query=${encodeURIComponent(
+        `${api_url}/search/movie?api_key=${apiKey}&query=${encodeURIComponent(
           keyword
         )}&language=en-US&page=${page}`
       )
@@ -92,7 +92,9 @@ const fetchSearch = async (keyword, pages = [1]) => {
     const allMovies = [];
 
     responses.forEach((response) => {
+      console.log(response);
       response.data.results.forEach((movie) => {
+        console.log(movie);
         if (!uniqueMovieIds.has(movie.id)) {
           uniqueMovieIds.add(movie.id);
           allMovies.push(movie);

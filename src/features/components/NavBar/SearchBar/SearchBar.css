@@ -2,29 +2,28 @@
     display: flex;
     align-items: center;
     position: relative;
-    transition: all 0.3s ease;
-  }
-  
-  .searchButton {
-    color: white; 
-  }
-  
-  .close-icon-button {
-    color: white;
-  }
-  .search-input-container {
+    width:50%;
+}
+
+
+.search-input-container {
     display: flex;
     align-items: center;
-    transition: width 0.3s ease;
     overflow: hidden;
-    width: 0; 
-  }
-  
-  .search-bar.open .search-input-container {
-    width: 200px; 
-  }
-  
-  .search-input-container .MuiTextField-root {
+    position: absolute;
+    right: 0;
+}
+
+.search-bar.open .search-input-container {
+    width: 400px;
+    transform: translateX(0); 
+}
+
+.search-input-container .MuiTextField-root {
     width: 100%; 
-  }
-  
+}
+
+.MuiOutlinedInput-root {
+    height: 50px; 
+    font-size: 16px; 
+}

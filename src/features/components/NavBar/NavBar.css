@@ -1,20 +1,21 @@
 .NavLayout {
     display: flex;
     align-items: center;
-    padding: 0 20px; /* Add padding for better alignment */
+    padding: 0 20px; 
     background-color: #141414;
   }
-  
-  .TitleContainer {
-    margin-right: 20px; /* Add margin to the right of the title */
-  }
-  
   .NavItems {
     display: flex;
-    align-items: center;
-    gap: 20px;
+    flex-grow: 2;
+    justify-content: space-around; 
+    margin: 0 20px; 
+}
+
+  .TitleContainer {
+    margin-right: 20px; 
   }
   
+
   .Spacer {
     flex-grow: 1;
   }

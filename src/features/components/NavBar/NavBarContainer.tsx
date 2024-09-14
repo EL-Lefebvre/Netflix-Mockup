@@ -1,13 +1,13 @@
 import React from "react";
-import { AppBar, Box, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import NavBarItem from "./NavBarItem";
 import SearchBar from "./SearchBar/SearchBar";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppContext } from "../../../AppProvider";
 import "./NavBar.css";
 
 const NavBarContainer = () => {
-  const itemList = ["Home", "TV Shows", "Movies", "New & Popular", "My List"];
+  const itemList = ["Movies", "TV Shows", "New & Popular", "My List"];
   const navigate = useNavigate();
   const { setCurrentPage } = useAppContext();
 
@@ -21,9 +21,14 @@ const NavBarContainer = () => {
       <AppBar>
         <Toolbar className="NavLayout">
           <Box className="TitleContainer">
-            <Typography sx={{ color: "red", fontWeight: "bold" }}>
-              MOVIEFLIX
-            </Typography>
+            <Link
+              to={`/home`}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <Typography sx={{ color: "red", fontWeight: "bold" }}>
+                MOVIEFLIX
+              </Typography>
+            </Link>
           </Box>
           <Box className="NavItems">
             {itemList.map((item) => (
