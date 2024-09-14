@@ -1,0 +1,14 @@
+.Details {
+    display:flex;
+    justify-content: flex-start;
+    color:darkgrey;
+}
+.Listing{
+    display:flex;
+    justify-content: flex-start; 
+    flex-direction: row;
+}
+.Genres {
+    display:flex;
+    justify-content: flex-start;
+}

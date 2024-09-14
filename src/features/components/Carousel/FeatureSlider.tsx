@@ -116,6 +116,7 @@ const FeatureSlider = ({ movies, genres }) => {
             <Slider {...settings}>
               {moviesByFirstGenre[genreName].map((movie) => (
                 <FeatureCard
+                  movieId={movie.id}
                   name={movie.original_title || movie.name}
                   media={`${imageUrl}${movie.backdrop_path}`}
                   key={movie.id}

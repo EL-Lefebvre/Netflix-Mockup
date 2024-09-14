@@ -1,10 +1,20 @@
 import React from "react";
 import { Card, CardMedia, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import "./FeatureCard.css";
 
-const FeatureCard = ({ name, media }) => {
+const FeatureCard = ({ movieId, name, media }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    console.log(movieId);
+    navigate(`/movie/${movieId}`);
+  };
   return (
-    <Card className="CardLayout">
+    <Card
+      className="CardLayout"
+      onClick={handleClick}
+      sx={{ cursor: "pointer" }}
+    >
       <div className="MediaWrapper">
         <CardMedia className="Media" image={media} title={`${name}-image`} />
         <div className="MovieCardOverlay">

@@ -18,7 +18,8 @@ export interface Genre {
     searchResults: any;
     setGenres: (genres: Genre[]) => void;
     setPopularMovies: (movies: Movie[]) => void;
-    searchMoviesByKeyword:any;
+    searchMoviesByKeyword: (keyword: string, pages?: number[]) => Promise<void>;
+    getMovieById: (id: string) => Promise<Movie | null>; 
     currentPage:string|any;
     setCurrentPage:any;
   }

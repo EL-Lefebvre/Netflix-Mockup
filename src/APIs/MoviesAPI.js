@@ -109,4 +109,26 @@ const fetchSearch = async (keyword, pages = [1]) => {
   }
 };
 
-export { fetchGenres, fetchSearch, fetchPopularMovies, fetchPopularTVShows };
+const fetchMovieById = async (id) => {
+  try {
+    const response = await fetch(
+      `${api_url}/movie/${id}?api_key=${apiKey}&language=en-US`
+    );
+    if (!response.ok) {
+      throw new Error("Movie not found");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export {
+  fetchGenres,
+  fetchSearch,
+  fetchPopularMovies,
+  fetchPopularTVShows,
+  fetchMovieById,
+};

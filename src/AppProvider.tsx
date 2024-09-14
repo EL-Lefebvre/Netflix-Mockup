@@ -3,23 +3,22 @@ import {
   fetchGenres,
   fetchPopularMovies,
   fetchPopularTVShows,
-  fetchSearch, // Import the search API function
+  fetchSearch,
+  fetchMovieById,
 } from "./APIs/MoviesAPI";
 import { Genre, Movie, AppContextType } from "./types";
 
-// Create the context
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 const AppProvider = ({ children }) => {
   const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
   const [popularTVShows, setPopularTVShows] = useState<Movie[]>([]);
   const [genres, setGenres] = useState<Genre[]>([]);
-  const [searchResults, setSearchResults] = useState<Movie[]>([]); // State for search results
+  const [searchResults, setSearchResults] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<any>(null);
-  const [currentPage, setCurrentPage] = useState<string>("/home"); // State for current page
+  const [currentPage, setCurrentPage] = useState<string>("/home");
 
-  // Fetch genres, movies, and TV shows
   useEffect(() => {
     const getGenres = async () => {
       try {
@@ -73,7 +72,15 @@ const AppProvider = ({ children }) => {
       setLoading(false);
     }
   };
-
+  const getMovieById = async (id: string) => {
+    try {
+      const movie = await fetchMovieById(id);
+      return movie;
+    } catch (error) {
+      setError(error);
+      return null;
+    }
+  };
   return (
     <AppContext.Provider
       value={{
@@ -86,6 +93,7 @@ const AppProvider = ({ children }) => {
         setCurrentPage,
         setGenres,
         setPopularMovies,
+        getMovieById,
       }}
     >
       {children}
