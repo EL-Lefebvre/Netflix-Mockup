@@ -6,7 +6,7 @@ import Home from "./Home";
 import TVShows from "./TVShows";
 import SearchResults from "./SearchResults";
 import Footer from "../features/components/Footer/Footer";
-import ContentPage from "./ContentPage";
+import ContentPage from "./DetailsPage";
 import { Box } from "@mui/material";
 
 const App = () => {
@@ -39,7 +39,7 @@ const App = () => {
               }
             />
             <Route
-              path="/tv/:id"
+              path="/tvshows/:id"
               element={
                 <ContentPage
                   id={""}

@@ -3,34 +3,28 @@ import { useLocation, useNavigate } from "react-router-dom";
 import FeatureSlider from "../features/components/Carousel/FeatureSlider";
 import { Box, Typography, Button, CardMedia } from "@mui/material";
 import { useAppContext } from "../AppProvider";
-import MoviePage from "./MoviePage";
-import ContentPage from "./ContentPage";
+import DetailsPage from "./DetailsPage"; // Assuming DetailsPage replaces MoviePage
 
 const TVShows = () => {
   const { genres = [], popularTVShows = [] } = useAppContext();
-  const [selectedItemId, setSelectedItemId] = useState(null);
-  const [isItemPageOpen, setIsItemPageOpen] = useState(false);
+  const [selectedItemId, setSelectedItemId] = useState<number | null>(null);
   const [isContentPageOpen, setIsContentPageOpen] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleItemClick = (itemId) => {
+  const handleItemClick = (itemId: number) => {
     setSelectedItemId(itemId);
-    setIsItemPageOpen(true);
-    navigate(`/tv/${itemId}`, { state: { backgroundLocation: location } });
+    setIsContentPageOpen(true);
+    navigate(`/tvshows/${itemId}`, { state: { backgroundLocation: location } });
   };
 
-  const handleCloseItemPage = () => {
-    setIsItemPageOpen(false);
+  const handleCloseContentPage = () => {
+    setIsContentPageOpen(false);
     setSelectedItemId(null);
     navigate(-1);
   };
-  const handleTVShowClick = (tvId) => {
-    setSelectedItemId(tvId);
-    setIsContentPageOpen(true);
-    navigate(`/tv/${tvId}`);
-  };
+
   const firstTVShow = popularTVShows[0];
 
   return (
@@ -62,19 +56,20 @@ const TVShows = () => {
           </Box>
         </Box>
       )}
+
       <div className="Layout">
         <FeatureSlider
           items={popularTVShows}
           genres={genres}
-          onItemClick={handleTVShowClick}
+          onItemClick={handleItemClick}
           contentType="tv"
         />
       </div>
 
       {isContentPageOpen && selectedItemId && (
-        <ContentPage
+        <DetailsPage
           open={isContentPageOpen}
-          handleClose={handleCloseItemPage}
+          handleClose={handleCloseContentPage}
           id={selectedItemId}
           type="tv"
           isModal

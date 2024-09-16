@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./FeatureSlider.css";
 import { useState } from "react";
-import ContentPage from "../../../pages/ContentPage";
+import ContentPage from "../../../pages/DetailsPage";
 
 interface Genre {
   id: number;
@@ -65,9 +65,11 @@ const FeatureSlider: React.FC<FeatureSliderProps> = ({
   };
 
   const handleItemClick = (itemId: number) => {
-    setSelectedItemId(itemId);
+    const numericId =
+      typeof itemId === "string" ? parseInt(itemId, 10) : itemId;
+    setSelectedItemId(numericId);
     setIsContentPageOpen(true);
-    onItemClick(itemId);
+    onItemClick(numericId);
   };
 
   const groupItemsByGenresWithLimit = (items: Item[], genres: Genre[]) => {

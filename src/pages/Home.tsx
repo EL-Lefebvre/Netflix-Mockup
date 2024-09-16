@@ -25,7 +25,7 @@ const Home = () => {
   };
 
   const firstMovie = popularMovies[0];
-
+  console.log(isMoviePageOpen);
   return (
     <div>
       {firstMovie && (
