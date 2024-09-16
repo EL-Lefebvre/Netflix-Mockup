@@ -5,6 +5,7 @@ import {
   fetchPopularTVShows,
   fetchSearch,
   fetchMovieById,
+  fetchTVById,
 } from "./APIs/MoviesAPI";
 import { Genre, Movie, AppContextType } from "./types";
 
@@ -81,6 +82,15 @@ const AppProvider = ({ children }) => {
       return null;
     }
   };
+  const getTVById = async (id: string) => {
+    try {
+      const movie = await fetchTVById(id);
+      return movie;
+    } catch (error) {
+      setError(error);
+      return null;
+    }
+  };
   return (
     <AppContext.Provider
       value={{
@@ -94,6 +104,7 @@ const AppProvider = ({ children }) => {
         setGenres,
         setPopularMovies,
         getMovieById,
+        getTVById,
       }}
     >
       {children}

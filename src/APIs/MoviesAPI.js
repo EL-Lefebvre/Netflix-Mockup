@@ -124,6 +124,21 @@ const fetchMovieById = async (id) => {
     return null;
   }
 };
+const fetchTVById = async (id) => {
+  try {
+    const response = await fetch(
+      `${api_url}/tv/${id}?api_key=${apiKey}&language=en-US`
+    );
+    if (!response.ok) {
+      throw new Error("Movie not found");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
 
 export {
   fetchGenres,
@@ -131,4 +146,5 @@ export {
   fetchPopularMovies,
   fetchPopularTVShows,
   fetchMovieById,
+  fetchTVById,
 };

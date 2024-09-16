@@ -13,7 +13,7 @@ import {
 import { useAppContext } from "../AppProvider";
 import CloseIcon from "@mui/icons-material/Close";
 
-const MoviePage = ({ open, handleClose, id, type, isModal }) => {
+const ContentPage = ({ open, handleClose, id, type, isModal }) => {
   const { getMovieById, getTVById } = useAppContext();
   const [item, setItem] = useState(null);
 
@@ -110,4 +110,4 @@ const MoviePage = ({ open, handleClose, id, type, isModal }) => {
   );
 };
 
-export default MoviePage;
+export default ContentPage;

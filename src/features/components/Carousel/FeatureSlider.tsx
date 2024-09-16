@@ -4,8 +4,37 @@ import { PrevArrow, NextArrow } from "../Carousel/Arrows";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./FeatureSlider.css";
+import { useState } from "react";
+import ContentPage from "../../../pages/ContentPage";
 
-const FeatureSlider = ({ movies, genres }) => {
+interface Genre {
+  id: number;
+  name: string;
+}
+
+interface Item {
+  id: number;
+  original_title?: string;
+  name?: string;
+  backdrop_path?: string;
+  genre_ids?: number[];
+}
+
+interface FeatureSliderProps {
+  items: Item[];
+  genres: Genre[];
+  onItemClick: (itemId: number | string) => void;
+  contentType: string;
+}
+
+const FeatureSlider: React.FC<FeatureSliderProps> = ({
+  items,
+  genres,
+  onItemClick,
+  contentType,
+}) => {
+  const [selectedItemId, setSelectedItemId] = useState<number | null>(null);
+  const [isContentPageOpen, setIsContentPageOpen] = useState(false);
   const imageUrl = "https://image.tmdb.org/t/p/w500";
 
   const settings = {
@@ -17,7 +46,6 @@ const FeatureSlider = ({ movies, genres }) => {
     centerMode: false,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
-
     responsive: [
       {
         breakpoint: 1024,
@@ -36,25 +64,31 @@ const FeatureSlider = ({ movies, genres }) => {
     ],
   };
 
-  const groupMoviesByGenresWithLimit = (movies, genres) => {
-    const maxMoviesPerGenre = 8;
+  const handleItemClick = (itemId: number) => {
+    setSelectedItemId(itemId);
+    setIsContentPageOpen(true);
+    onItemClick(itemId);
+  };
+
+  const groupItemsByGenresWithLimit = (items: Item[], genres: Genre[]) => {
+    const maxItemsPerGenre = 8;
     const maxGenres = 5;
 
     const genreMap = genres.reduce((map, genre) => {
       map[genre.id] = genre.name;
       return map;
-    }, {});
+    }, {} as Record<number, string>);
 
-    const genreCounts = {};
-    const genreGroups = {};
+    const genreCounts: Record<string, number> = {};
+    const genreGroups: Record<string, Item[]> = {};
     let genreCount = 0;
 
-    movies.forEach((movie) => {
-      if (!movie.genre_ids || movie.genre_ids.length === 0) return;
+    items.forEach((item) => {
+      if (!item.genre_ids || item.genre_ids.length === 0) return;
 
       let addedToGenre = false;
 
-      for (const genreId of movie.genre_ids) {
+      for (const genreId of item.genre_ids) {
         const genreName = genreMap[genreId];
         if (!genreName) continue;
 
@@ -64,18 +98,18 @@ const FeatureSlider = ({ movies, genres }) => {
           genreCount++;
         }
 
-        // Add the movie to the genre group if it's within the limit
-        if (genreCounts[genreName] < maxMoviesPerGenre) {
-          genreGroups[genreName].push(movie);
+        // Add the item to the genre group if it's within the limit
+        if (genreCounts[genreName] < maxItemsPerGenre) {
+          genreGroups[genreName].push(item);
           genreCounts[genreName]++;
           addedToGenre = true;
           break;
         }
       }
 
-      // Handle movies with undefined genre_ids or if no genre was assigned
+      // Handle items with undefined genre_ids or if no genre was assigned
       if (!addedToGenre) {
-        const firstGenreId = movie.genre_ids[0];
+        const firstGenreId = item.genre_ids[0];
         const firstGenreName = genreMap[firstGenreId];
 
         if (
@@ -88,14 +122,14 @@ const FeatureSlider = ({ movies, genres }) => {
           genreCount++;
         }
 
-        if (firstGenreName && genreCounts[firstGenreName] < maxMoviesPerGenre) {
-          genreGroups[firstGenreName].push(movie);
+        if (firstGenreName && genreCounts[firstGenreName] < maxItemsPerGenre) {
+          genreGroups[firstGenreName].push(item);
           genreCounts[firstGenreName]++;
         }
       }
     });
 
-    // Remove genres that have fewer than 5 movies
+    // Remove genres that have fewer than 5 items
     Object.keys(genreGroups).forEach((genreName) => {
       if (genreGroups[genreName].length < 5) {
         delete genreGroups[genreName];
@@ -105,27 +139,39 @@ const FeatureSlider = ({ movies, genres }) => {
     return genreGroups;
   };
 
-  const moviesByFirstGenre = groupMoviesByGenresWithLimit(movies, genres);
+  const itemsByFirstGenre = groupItemsByGenresWithLimit(items, genres);
 
   return (
     <div className="Layout">
-      {Object.keys(moviesByFirstGenre).map((genreName) => (
+      {Object.keys(itemsByFirstGenre).map((genreName) => (
         <div className="Category" key={genreName}>
           <div className="CategoryTitle">{genreName}</div>
           <div className="MovieList">
             <Slider {...settings}>
-              {moviesByFirstGenre[genreName].map((movie) => (
-                <FeatureCard
-                  movieId={movie.id}
-                  name={movie.original_title || movie.name}
-                  media={`${imageUrl}${movie.backdrop_path}`}
-                  key={movie.id}
-                />
+              {itemsByFirstGenre[genreName].map((item) => (
+                <div key={item.id} onClick={() => handleItemClick(item.id)}>
+                  <FeatureCard
+                    itemId={item.id}
+                    name={item.original_title || item.name}
+                    media={`${imageUrl}${item.backdrop_path}`}
+                    key={item.id}
+                    onClick={() => handleItemClick(item.id)}
+                  />
+                </div>
               ))}
             </Slider>
           </div>
         </div>
       ))}
+      {isContentPageOpen && selectedItemId && (
+        <ContentPage
+          open={isContentPageOpen}
+          handleClose={() => setIsContentPageOpen(false)}
+          id={selectedItemId}
+          type={contentType}
+          isModal
+        />
+      )}
     </div>
   );
 };

@@ -1,36 +1,61 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import "./App.css";
 import NavBarContainer from "../features/components/NavBar/NavBarContainer";
 import Home from "./Home";
 import TVShows from "./TVShows";
 import SearchResults from "./SearchResults";
 import Footer from "../features/components/Footer/Footer";
-import MoviePage from "./MoviePage";
+import ContentPage from "./ContentPage";
 import { Box } from "@mui/material";
 
 const App = () => {
+  const location = useLocation();
+  const state = location.state && location.state.backgroundLocation;
+
   return (
-    <Router>
-      <Box className="App">
-        <NavBarContainer />
-        <Box className="MainContent">
+    <Box className="App">
+      <NavBarContainer />
+      <Box className="MainContent">
+        <Routes location={state || location}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/tvshows" element={<TVShows />} />
+          <Route path="/search" element={<SearchResults />} />
+          <Route path="*" element={<Navigate to="/home" replace />} />
+        </Routes>
+
+        {state && (
           <Routes>
-            <Route path="/home" element={<Home />} />
-            <Route path="/tvshows" element={<TVShows />} />
-            <Route path="/search" element={<SearchResults />} />
-            <Route path="/movie/:id" element={<MoviePage />} />
-            <Route path="*" element={<Navigate to="/home" replace />} />
+            <Route
+              path="/movie/:id"
+              element={
+                <ContentPage
+                  id={""}
+                  type="movie"
+                  open
+                  handleClose={() => {}}
+                  isModal
+                />
+              }
+            />
+            <Route
+              path="/tv/:id"
+              element={
+                <ContentPage
+                  id={""}
+                  type="tv"
+                  open
+                  handleClose={() => {}}
+                  isModal
+                />
+              }
+            />
           </Routes>
-          <Footer />
-        </Box>
+        )}
+
+        <Footer />
       </Box>
-    </Router>
+    </Box>
   );
 };
 
