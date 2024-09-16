@@ -1,12 +1,14 @@
-import React from "react";
-import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
 import NavBarItem from "./NavBarItem";
 import SearchBar from "./SearchBar/SearchBar";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppContext } from "../../../AppProvider";
+import MenuIcon from "@mui/icons-material/Menu";
 import "./NavBar.css";
 
 const NavBarContainer = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const itemList = ["Movies", "TV Shows", "New & Popular", "My List"];
   const navigate = useNavigate();
   const { setCurrentPage } = useAppContext();
@@ -14,6 +16,10 @@ const NavBarContainer = () => {
   const handleNavClick = (path: string) => {
     setCurrentPage(path);
     navigate(path);
+  };
+
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -30,6 +36,14 @@ const NavBarContainer = () => {
               </Typography>
             </Link>
           </Box>
+
+          <IconButton
+            className="MenuButton"
+            onClick={handleMenuToggle}
+            sx={{ display: { xs: "block", md: "none" } }}
+          >
+            <MenuIcon style={{ color: "white" }} />
+          </IconButton>
           <Box className="NavItems">
             {itemList.map((item) => (
               <NavBarItem
@@ -46,10 +60,31 @@ const NavBarContainer = () => {
               />
             ))}
           </Box>
-          <Box className="Spacer" />
+          {!isMenuOpen && <Box className="Spacer" />}
           <SearchBar />
         </Toolbar>
       </AppBar>
+      {isMenuOpen && (
+        <Box
+          className={`MobileMenu ${isMenuOpen ? "open" : ""}`}
+          sx={{ display: { xs: "block", md: "none" } }}
+        >
+          {itemList.map((item) => (
+            <NavBarItem
+              key={item}
+              name={item}
+              onClick={() =>
+                handleNavClick(
+                  `/${item
+                    .toLowerCase()
+                    .replace(/ & /g, "-")
+                    .replace(/ /g, "")}`
+                )
+              }
+            />
+          ))}
+        </Box>
+      )}
     </Box>
   );
 };

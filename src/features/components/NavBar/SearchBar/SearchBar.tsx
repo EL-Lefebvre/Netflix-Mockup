@@ -27,7 +27,7 @@ const SearchBar = () => {
   };
 
   return (
-    <Box className="search-bar">
+    <Box className="searchBar">
       {!isOpen && (
         <IconButton className="search-button" onClick={() => setIsOpen(true)}>
           <SearchIcon />
@@ -39,7 +39,7 @@ const SearchBar = () => {
           transform: isOpen ? "translateX(0)" : "translateX(-100%)",
           transition: " width 1s ease, transform 1s ease",
         }}
-        className="search-input-container"
+        className="SearchInput"
       >
         <TextField
           variant="outlined"
@@ -47,13 +47,7 @@ const SearchBar = () => {
           size="small"
           value={keyword}
           onChange={(e) => handleSearch(e.target.value)}
-          sx={{
-            backgroundColor: "white",
-            borderRadius: "4px",
-            width: "100%",
-            height: "50px",
-            fontSize: "16px",
-          }}
+          className="MainInput"
         />
 
         <IconButton sx={{ color: "white" }} onClick={() => handleClose()}>
