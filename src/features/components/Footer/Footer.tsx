@@ -23,14 +23,16 @@ const Footer = () => {
   return (
     <Box className="footer">
       <Box className="footer-content">
-        <Typography variant="body2" className="footer-text">
-          © {new Date().getFullYear()} MovieFlix. All rights reserved.
-        </Typography>
         {itemList.map((item, index) => (
           <Typography key={index} variant="body2" className="footer-link">
             {item}
           </Typography>
         ))}
+      </Box>
+      <Box className="footer-padding">
+        <Typography variant="body1" className="footer-text">
+          © {new Date().getFullYear()} MovieFlix. All rights reserved.
+        </Typography>
       </Box>
     </Box>
   );
