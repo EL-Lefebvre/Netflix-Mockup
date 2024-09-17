@@ -23,5 +23,7 @@ export interface Genre {
     getTVById: (id: string) => Promise<Movie | null>; 
     currentPage:string|any;
     setCurrentPage:any;
+    error:any;
+    loading:any;
   }
   

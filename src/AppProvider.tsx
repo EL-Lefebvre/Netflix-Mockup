@@ -105,6 +105,8 @@ const AppProvider = ({ children }) => {
         setPopularMovies,
         getMovieById,
         getTVById,
+        error,
+        loading,
       }}
     >
       {children}
