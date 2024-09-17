@@ -49,3 +49,9 @@
 .footerIcons {
   color:white;
 }
+  
+@media (max-width: 600px) {
+  .footer {
+   padding:20px;
+  }
+}

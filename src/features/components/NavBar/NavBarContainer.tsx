@@ -60,14 +60,13 @@ const NavBarContainer = () => {
               />
             ))}
           </Box>
-          {!isMenuOpen && <Box className="Spacer" />}
-          <SearchBar />
+          {!isMenuOpen && <SearchBar />}
         </Toolbar>
       </AppBar>
       {isMenuOpen && (
         <Box
           className={`MobileMenu ${isMenuOpen ? "open" : ""}`}
-          sx={{ display: { xs: "block", md: "none" } }}
+          sx={{ display: { xs: "block", md: "none" }, zIndex: "3" }}
         >
           {itemList.map((item) => (
             <NavBarItem
