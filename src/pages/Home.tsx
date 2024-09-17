@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAppContext } from "../AppProvider";
 import FeatureSlider from "../features/components/Carousel/FeatureSlider";
-import MoviePage from "./MoviePage";
+
 import { Box, Typography, Button, CardMedia } from "@mui/material";
+import DetailsPage from "./DetailsPage";
 
 const Home = () => {
   const { genres = [], popularMovies = [] } = useAppContext();
@@ -66,7 +67,7 @@ const Home = () => {
       </div>
 
       {isMoviePageOpen && selectedMovieId && (
-        <MoviePage
+        <DetailsPage
           open={isMoviePageOpen}
           handleClose={handleCloseMoviePage}
           type="movie"

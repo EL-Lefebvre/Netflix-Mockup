@@ -48,3 +48,15 @@
     font-weight: bold;
   }
   
+  @media (max-width: 600px) {
+    .CardLayout {
+      width: 150px; 
+      height: 90px;  
+      display:flex;
+      justify-content: center;
+    }
+  
+    .MovieCardTitle {
+      font-size: 14px; 
+    }
+  }

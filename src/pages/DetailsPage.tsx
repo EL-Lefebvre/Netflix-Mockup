@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { useAppContext } from "../AppProvider";
 import CloseIcon from "@mui/icons-material/Close";
+import "./DetailsPage.css";
 
 const DetailsPage = ({ open, handleClose, id, type, isModal }) => {
   const { getMovieById, getTVById } = useAppContext();
@@ -73,7 +74,7 @@ const DetailsPage = ({ open, handleClose, id, type, isModal }) => {
         <Card sx={{ backgroundColor: "transparent", boxShadow: "none" }}>
           <CardMedia
             component="img"
-            height="500"
+            className="FirstFeature"
             image={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
             alt={item.title || item.name}
           />

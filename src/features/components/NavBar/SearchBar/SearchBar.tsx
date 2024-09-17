@@ -27,20 +27,13 @@ const SearchBar = () => {
   };
 
   return (
-    <Box className="searchBar">
+    <Box className={`SearchBar ${isOpen ? "open" : ""}`}>
       {!isOpen && (
-        <IconButton className="search-button" onClick={() => setIsOpen(true)}>
+        <IconButton className="SearchButton" onClick={() => setIsOpen(true)}>
           <SearchIcon />
         </IconButton>
       )}
-      <Box
-        sx={{
-          width: isOpen ? "400px" : "0",
-          transform: isOpen ? "translateX(0)" : "translateX(-100%)",
-          transition: " width 1s ease, transform 1s ease",
-        }}
-        className="SearchInput"
-      >
+      <Box className="SearchInput">
         <TextField
           variant="outlined"
           placeholder="Search..."

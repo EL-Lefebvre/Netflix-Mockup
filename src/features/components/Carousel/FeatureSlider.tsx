@@ -57,7 +57,7 @@ const FeatureSlider: React.FC<FeatureSliderProps> = ({
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },

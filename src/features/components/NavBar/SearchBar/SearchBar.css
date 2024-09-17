@@ -1,8 +1,9 @@
-.searchBar {
+.SearchBar {
     display: flex;
     align-items: center;
     position: relative;
     width:50%;
+    /* padding: 0 50px; */
 }
 
 
@@ -13,47 +14,70 @@
      position: absolute; 
      right: 0; 
      width: 100%;
-       overflow: hidden;
+       border-radius: 4px;
+       transition: width 1s ease, transform 1s ease;
+       width:0;
+       transform:translateX(-100%);
 }
 
+.SearchInput.open {
+    width: 250px;
+     transform:translateX(0);
+}
 .MainInput {
     background-color: white;
-    border-radius: "4px";
-    width: "100%";
-    height: "50px";
-    font-size: "16px";
+    border-radius: 4px;
+    width: 100%;
+    height: 50px;
+
 }
 .SearchBar.open .SearchInput{
-    width: 400px;
+    width: 200px;
     transform: translateX(0); 
 }
 
+.SearchIcon {
+    color:white;
+}
 
-
+.CloseIcon {
+    color: white;
+     position: absolute;
+      right: 0;
+}
 .MuiOutlinedInput-root {
     height: 50px; 
     font-size: 16px; 
+    border-radius: "4px";
 }
 @media (max-width: 600px) {
+    .SearchBar {
+        padding: 0 15px;
+    }
     .SearchBar.open .SearchInput{
         width: 40px;
         transform: translateX(0); 
     }
     .SearchInput {
-     
-        width: 20%; 
+        width: 0;
         transform: translateX(-100%);
-     left:0;
-     
-     }
+      }
+    
+      .SearchInput.open {
+        width: 60%;
+        transform: translateX(0);
+      }
+    .SearchIcon {
+        margin-right: 10px;
+    }
      .MainInput {
         
-        width: 40%;
+        width: 90%; 
      }
 
     
     .SearchBar.open .SearchInput{
-        width: 20%;
-        transform: translateX(0); 
+        width: 70%;
+        /* transform: translateX(0);  */
     }
   }
