@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import FeatureSlider from "../features/components/Carousel/FeatureSlider";
 import { Box, Typography, Button, CardMedia } from "@mui/material";
 import { useAppContext } from "../AppProvider";
-import DetailsPage from "./DetailsPage"; // Assuming DetailsPage replaces MoviePage
+import DetailsPage from "./DetailsPage";
 
 const TVShows = () => {
   const { genres = [], popularTVShows = [] } = useAppContext();

@@ -3,6 +3,7 @@ import { useAppContext } from "../AppProvider";
 import FeatureCard from "../features/components/FeatureCard/FeatureCard";
 import { useState } from "react";
 import MoviePage from "./MoviePage";
+import "./SearchResults.css";
 
 const SearchResults = () => {
   const { searchResults } = useAppContext();
@@ -26,12 +27,20 @@ const SearchResults = () => {
 
   return (
     <div>
-      <div className="Layout" style={{ paddingTop: "100px" }}>
-        <Grid container spacing={3}>
+      <div className="Layout" style={{ maxWidth: "100%" }}>
+        <Grid container spacing={{ xs: 0, sm: 2 }} justifyContent="center">
           {searchResults.map(
             (movie) =>
               movie.backdrop_path && (
-                <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
+                <Grid
+                  item
+                  xs={6}
+                  sm={6}
+                  md={4}
+                  lg={3}
+                  sx={{ paddingBottom: 2 }}
+                  key={movie.id}
+                >
                   <FeatureCard
                     itemId={movie.id}
                     name={movie.original_title || movie.name}

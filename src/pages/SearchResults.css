@@ -1,0 +1,17 @@
+
+.Layout {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  
+
+  @media (max-width: 600px) {
+    .Layout {
+        box-sizing: border-box;
+      /* padding-left: 40px;
+      padding-right: 40px; */
+   
+      
+    }
+  }
+  
