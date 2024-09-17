@@ -1,23 +1,62 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import "./App.css";
-import SearchBarContainer from "../features/components/SearchBar/SearchBarContainer";
+import NavBarContainer from "../features/components/NavBar/NavBarContainer";
 import Home from "./Home";
-function App() {
+import TVShows from "./TVShows";
+import SearchResults from "./SearchResults";
+import Footer from "../features/components/Footer/Footer";
+import ContentPage from "./DetailsPage";
+import { Box } from "@mui/material";
+
+const App = () => {
+  const location = useLocation();
+  const state = location.state && location.state.backgroundLocation;
+
   return (
-    <Router>
-      <div className="App">
-        <SearchBarContainer />
-        <div className="content">
+    <Box className="App">
+      <NavBarContainer />
+      <Box className="MainContent">
+        <Routes location={state || location}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/tvshows" element={<TVShows />} />
+          <Route path="/search" element={<SearchResults />} />
+          <Route path="*" element={<Navigate to="/home" replace />} />
+        </Routes>
+
+        {state && (
           <Routes>
-            <Route path="/" element={<Home />} />
-            {/* <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} /> */}
+            <Route
+              path="/movie/:id"
+              element={
+                <ContentPage
+                  id={""}
+                  type="movie"
+                  open
+                  handleClose={() => {}}
+                  isModal
+                />
+              }
+            />
+            <Route
+              path="/tvshows/:id"
+              element={
+                <ContentPage
+                  id={""}
+                  type="tv"
+                  open
+                  handleClose={() => {}}
+                  isModal
+                />
+              }
+            />
           </Routes>
-        </div>
-      </div>
-    </Router>
+        )}
+
+        <Footer />
+      </Box>
+    </Box>
   );
-}
+};
 
 export default App;

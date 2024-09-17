@@ -1,0 +1,63 @@
+.NavLayout {
+    display: flex;
+    align-items: center;
+    padding: 0 20px; 
+    background-color: #141414;
+    overflow-x: hidden; 
+  }
+  .NavLayout, .MobileMenu {
+    overflow: hidden;
+  }
+  .NavItems {
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 2;
+    justify-content: space-around; 
+    margin: 0 20px; 
+}
+
+  .TitleContainer {
+    margin-right: 20px; 
+  }
+  
+
+  .Spacer {
+    flex-grow: 1;
+  }
+  .MenuButton {
+    display: none; 
+  }
+  
+  .MobileMenu {
+    display: none; 
+    position: absolute;
+    top: 64px; 
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow-x: hidden;
+  }
+  
+
+  .MobileMenu a {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  
+  @media (max-width: 600px) {
+    .NavItems {
+      display: none;
+    }
+    
+    .MenuButton {
+      display: block;
+    }
+  }
+  body {
+    overflow-x: hidden; 
+  }

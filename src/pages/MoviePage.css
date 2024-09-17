@@ -1,0 +1,23 @@
+.Details {
+    display: flex;
+    flex-direction: row;
+  justify-content: center;
+  }
+  
+  .Listing {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    gap: 8px; 
+    color: "white", 
+  }
+  
+  .Genres {
+    display: flex;
+    flex-direction: row;
+    gap: 8px; 
+  }
+  
+  .text {
+    color:white !important;
+  }

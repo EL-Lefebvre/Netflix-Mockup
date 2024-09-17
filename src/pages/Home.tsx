@@ -1,44 +1,79 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import MovieCard from "../features/components/MovieCard";
-import { Grid, Typography } from "@mui/material";
-import SearchBarContainer from "../features/components/SearchBar/SearchBarContainer";
-import "./Home.css";
-import MovieLists from "../features/components/MovieLists";
-const Home = () => {
-  const [moviesList, setMoviesList] = useState([]);
-  const imageUrl = "https://image.tmdb.org/t/p/w500";
-  useEffect(() => {
-    axios
-      .get(
-        "https://api.themoviedb.org/3/movie/popular?api_key=1ae518329a5a523e1a0833feccb74a9d&language=en-US"
-      )
-      .then((response) => {
-        let genreList = response.data.results;
-        setMoviesList(genreList);
-      });
-  }, []);
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAppContext } from "../AppProvider";
+import FeatureSlider from "../features/components/Carousel/FeatureSlider";
+import MoviePage from "./MoviePage";
+import { Box, Typography, Button, CardMedia } from "@mui/material";
 
-  console.log(moviesList);
+const Home = () => {
+  const { genres = [], popularMovies = [] } = useAppContext();
+  const [selectedMovieId, setSelectedMovieId] = useState<string | null>(null);
+  const [isMoviePageOpen, setIsMoviePageOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleMovieClick = (itemId: string) => {
+    setSelectedMovieId(itemId);
+    setIsMoviePageOpen(true);
+    navigate(`/movie/${itemId}`, { state: { backgroundLocation: location } });
+  };
+
+  const handleCloseMoviePage = () => {
+    setIsMoviePageOpen(false);
+    setSelectedMovieId(null);
+    navigate(-1);
+  };
+
+  const firstMovie = popularMovies[0];
+  console.log(isMoviePageOpen);
   return (
     <div>
-      <div className="TopPadding">
-        <h1>Home Page</h1>
-      </div>
+      {firstMovie && (
+        <Box sx={{ position: "relative", width: "100%", height: "500px" }}>
+          <CardMedia
+            component="img"
+            image={`https://image.tmdb.org/t/p/original${firstMovie.backdrop_path}`}
+            alt={firstMovie.title}
+            sx={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+          <Box
+            sx={{
+              position: "absolute",
+              bottom: 20,
+              left: 20,
+              color: "white",
+            }}
+          >
+            <Typography variant="h2">{firstMovie.title}</Typography>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => handleMovieClick(firstMovie.id)}
+            >
+              Watch Now
+            </Button>
+          </Box>
+        </Box>
+      )}
+
       <div className="Layout">
-        <Grid container spacing={2}>
-          {moviesList &&
-            moviesList.map((movie) => (
-              <Grid item xs={4}>
-                <MovieCard
-                  name={movie.original_title}
-                  media={`${imageUrl}${movie.backdrop_path}`}
-                  key={movie.id}
-                />
-              </Grid>
-            ))}
-        </Grid>
+        <FeatureSlider
+          items={popularMovies}
+          genres={genres}
+          onItemClick={handleMovieClick}
+          contentType="movie"
+        />
       </div>
+
+      {isMoviePageOpen && selectedMovieId && (
+        <MoviePage
+          open={isMoviePageOpen}
+          handleClose={handleCloseMoviePage}
+          type="movie"
+          id={selectedMovieId}
+          isModal
+        />
+      )}
     </div>
   );
 };
