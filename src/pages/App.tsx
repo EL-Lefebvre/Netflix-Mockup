@@ -18,7 +18,7 @@ const App = () => {
       <NavBarContainer />
       <Box className="MainContent">
         <Routes location={state || location}>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/tvshows" element={<TVShows />} />
           <Route path="/search" element={<SearchResults />} />
           <Route path="*" element={<Navigate to="/home" replace />} />

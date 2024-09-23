@@ -36,6 +36,7 @@ const TVShows = () => {
             image={`https://image.tmdb.org/t/p/original${firstTVShow.backdrop_path}`}
             alt={firstTVShow.name}
             sx={{ width: "100%", height: "100%", objectFit: "cover" }}
+            onClick={() => handleItemClick(firstTVShow.id)}
           />
           <Box
             sx={{
@@ -46,13 +47,6 @@ const TVShows = () => {
             }}
           >
             <Typography variant="h2">{firstTVShow.name}</Typography>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => handleItemClick(firstTVShow.id)}
-            >
-              Watch Now
-            </Button>
           </Box>
         </Box>
       )}
