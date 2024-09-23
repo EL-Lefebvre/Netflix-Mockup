@@ -31,7 +31,7 @@ const Home = () => {
   return (
     <div>
       {firstMovie && (
-        <Box sx={{ position: "relative", width: "100%", height: "500px" }}>
+        <Box sx={{ position: "relative", width: "100%", height: "600px" }}>
           <CardMedia
             component="img"
             image={`https://image.tmdb.org/t/p/original${firstMovie.backdrop_path}`}

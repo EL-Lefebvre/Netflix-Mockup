@@ -7,12 +7,28 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAppContext } from "../../../AppProvider";
 import MenuIcon from "@mui/icons-material/Menu";
 import UseScrollPosition from "./UseScrollPosition";
+
 import "./NavBar.css";
 
 const NavBarContainer = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const itemList = ["Movies", "TV Shows", "New & Popular", "My List"];
+  const [isScrolled, setIsScrolled] = useState(false);
 
+  const handleScroll = () => {
+    if (window.scrollY > 50) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   const scrollY = UseScrollPosition();
   const navigate = useNavigate();
   const { setCurrentPage } = useAppContext();
@@ -43,7 +59,14 @@ const NavBarContainer = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed">
+      <AppBar
+        position="fixed"
+        style={{
+          backgroundColor: isScrolled ? "black" : "transparent",
+          transition: "background-color 0.3s ease",
+          zIndex: "10",
+        }}
+      >
         <Toolbar className="NavLayout">
           <Box className="TitleContainer">
             <Link to={`/`} style={{ textDecoration: "none", color: "inherit" }}>
