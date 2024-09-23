@@ -23,7 +23,7 @@ const SearchBar = () => {
   const handleClose = () => {
     setIsOpen(false);
     setKeyword("");
-    navigate("/home");
+    navigate("/");
   };
 
   return (

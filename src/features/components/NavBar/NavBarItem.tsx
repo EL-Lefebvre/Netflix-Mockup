@@ -16,7 +16,7 @@ const NavBarItem: React.FC<NavBarItemProps> = ({ name, onClick }) => {
       style={{ textDecoration: "none", color: "inherit" }}
       onClick={onClick}
     >
-      <Typography>{name}</Typography>
+      <Typography variant="body2">{name}</Typography>
     </Link>
   );
 };

@@ -18,7 +18,7 @@ const AppProvider = ({ children }) => {
   const [searchResults, setSearchResults] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<any>(null);
-  const [currentPage, setCurrentPage] = useState<string>("/home");
+  const [currentPage, setCurrentPage] = useState<string>("/");
 
   useEffect(() => {
     const getGenres = async () => {

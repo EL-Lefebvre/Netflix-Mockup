@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FeatureSlider from "../features/components/Carousel/FeatureSlider";
 import { Box, Typography, Button, CardMedia } from "@mui/material";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import InfoIcon from "@mui/icons-material/Info";
 import { useAppContext } from "../AppProvider";
 import DetailsPage from "./DetailsPage";
 
@@ -47,6 +49,43 @@ const TVShows = () => {
             }}
           >
             <Typography variant="h2">{firstTVShow.name}</Typography>
+
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-around",
+                paddingTop: "20px",
+              }}
+            >
+              <Button
+                variant="contained"
+                startIcon={<PlayArrowIcon />}
+                style={{
+                  textTransform: "none",
+                  backgroundColor: "white",
+                  color: "black",
+                }}
+                onClick={() => handleItemClick(firstTVShow.id)}
+              >
+                <Typography>Play</Typography>
+              </Button>
+              <Button
+                startIcon={<InfoIcon />}
+                variant="contained"
+                onClick={() => handleItemClick(firstTVShow.id)}
+                sx={{
+                  backgroundColor: "rgba(128, 128, 128, 0.5)",
+                  color: "white",
+                  textTransform: "none",
+                  transition: "background-color 0.3s ease",
+                  "&:hover": {
+                    backgroundColor: "rgba(128, 128, 128, 0.2)",
+                  },
+                }}
+              >
+                <Typography>More Info</Typography>
+              </Button>
+            </Box>
           </Box>
         </Box>
       )}

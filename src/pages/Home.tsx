@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAppContext } from "../AppProvider";
 import FeatureSlider from "../features/components/Carousel/FeatureSlider";
-
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import InfoIcon from "@mui/icons-material/Info";
 import { Box, Typography, Button, CardMedia } from "@mui/material";
 import DetailsPage from "./DetailsPage";
 
@@ -26,7 +27,7 @@ const Home = () => {
   };
 
   const firstMovie = popularMovies[0];
-  console.log(isMoviePageOpen);
+
   return (
     <div>
       {firstMovie && (
@@ -35,7 +36,11 @@ const Home = () => {
             component="img"
             image={`https://image.tmdb.org/t/p/original${firstMovie.backdrop_path}`}
             alt={firstMovie.title}
-            sx={{ width: "100%", height: "100%", objectFit: "cover" }}
+            sx={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
             onClick={() => handleMovieClick(firstMovie.id)}
           />
           <Box
@@ -47,6 +52,42 @@ const Home = () => {
             }}
           >
             <Typography variant="h2">{firstMovie.title}</Typography>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-around",
+                paddingTop: "20px",
+              }}
+            >
+              <Button
+                variant="contained"
+                startIcon={<PlayArrowIcon />}
+                style={{
+                  textTransform: "none",
+                  backgroundColor: "white",
+                  color: "black",
+                }}
+                onClick={() => handleMovieClick(firstMovie.id)}
+              >
+                <Typography>Play</Typography>
+              </Button>
+              <Button
+                startIcon={<InfoIcon />}
+                variant="contained"
+                onClick={() => handleMovieClick(firstMovie.id)}
+                sx={{
+                  backgroundColor: "rgba(128, 128, 128, 0.5)",
+                  color: "white",
+                  textTransform: "none",
+                  transition: "background-color 0.3s ease",
+                  "&:hover": {
+                    backgroundColor: "rgba(128, 128, 128, 0.2)",
+                  },
+                }}
+              >
+                <Typography>More Info</Typography>
+              </Button>
+            </Box>
           </Box>
         </Box>
       )}

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
 import NavBarItem from "./NavBarItem";
 import SearchBar from "./SearchBar/SearchBar";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppContext } from "../../../AppProvider";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -45,10 +46,7 @@ const NavBarContainer = () => {
       <AppBar position="fixed">
         <Toolbar className="NavLayout">
           <Box className="TitleContainer">
-            <Link
-              to={`/home`}
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
+            <Link to={`/`} style={{ textDecoration: "none", color: "inherit" }}>
               <Typography sx={{ color: "red", fontWeight: "bold" }}>
                 MOVIEFLIX
               </Typography>
@@ -79,6 +77,7 @@ const NavBarContainer = () => {
             ))}
           </Box>
           {!isMenuOpen && <SearchBar />}
+          <NotificationsNoneIcon />
         </Toolbar>
       </AppBar>
       {isMenuOpen && (
