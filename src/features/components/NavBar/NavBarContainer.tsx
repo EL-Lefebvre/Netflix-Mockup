@@ -100,7 +100,6 @@ const NavBarContainer = () => {
             ))}
           </Box>
           {!isMenuOpen && <SearchBar />}
-          <NotificationsNoneIcon />
         </Toolbar>
       </AppBar>
       {isMenuOpen && (

@@ -4,12 +4,20 @@
     padding-right: 24px;
   }
   
-
+  @media (max-width: 1200px) {
+    .Layout {
+       
+height:100%;
+      padding-top: 140px !important; 
+   
+      
+    }
+  }
   @media (max-width: 600px) {
     .Layout {
         box-sizing: border-box;
-      /* padding-left: 40px;
-      padding-right: 40px; */
+
+      padding-top: 140px; 
    
       
     }

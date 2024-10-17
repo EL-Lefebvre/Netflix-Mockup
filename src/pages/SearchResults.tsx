@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { useAppContext } from "../AppProvider";
 import FeatureCard from "../features/components/FeatureCard/FeatureCard";
 import { useState } from "react";
@@ -27,8 +27,18 @@ const SearchResults = () => {
 
   return (
     <div>
-      <div className="Layout" style={{ maxWidth: "100%" }}>
-        <Grid container spacing={{ xs: 0, sm: 2 }} justifyContent="center">
+      <div className="Layout" style={{ height: "100%", paddingTop: "20px" }}>
+        {/* <Box style={{ height: "150px" }}>
+          <Typography variant="h4" color={"white"}>
+            Results
+          </Typography>
+        </Box> */}
+        <Grid
+          container
+          spacing={{ xs: 0, sm: 2 }}
+          justifyContent="flex-start"
+          width="100%"
+        >
           {searchResults.map(
             (movie) =>
               movie.backdrop_path && (
@@ -37,7 +47,7 @@ const SearchResults = () => {
                   xs={6}
                   sm={6}
                   md={4}
-                  lg={3}
+                  lg={2}
                   sx={{ paddingBottom: 2 }}
                   key={movie.id}
                 >

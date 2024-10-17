@@ -46,7 +46,19 @@
     display: block;
     margin: 10px 0;
   }
-  
+    
+  @media (max-width: 1084px) {
+    .NavItems {
+ display:none;
+    }
+    .MenuButton {
+      display: block;
+    }
+    .MobileMenu a {
+      display: block;
+      margin: 20px 0;
+    }
+  }
   
   @media (max-width: 600px) {
     .NavItems {

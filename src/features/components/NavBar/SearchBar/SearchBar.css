@@ -50,6 +50,11 @@
     font-size: 16px; 
     border-radius: "4px";
 }
+@media (max-width: 1084px) {
+    .SearchBar {
+        position: static;
+      
+    } }
 @media (max-width: 600px) {
     .SearchBar {
         padding: 0 15px;

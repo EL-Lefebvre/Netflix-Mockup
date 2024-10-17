@@ -34,7 +34,7 @@ const AppProvider = ({ children }) => {
 
     const getPopularMovies = async () => {
       try {
-        const pagesToFetch = [1, 2, 3, 4, 5];
+        const pagesToFetch = [1, 2, 3, 4, 5, 6, 7, 8];
         const response = await fetchPopularMovies(pagesToFetch);
         setPopularMovies(response);
       } catch (error) {
@@ -46,7 +46,7 @@ const AppProvider = ({ children }) => {
 
     const getPopularTVShows = async () => {
       try {
-        const pagesToFetch = [1, 2, 3, 4, 5];
+        const pagesToFetch = [1, 2, 3, 4, 5, 6, 7];
         const response = await fetchPopularTVShows(pagesToFetch);
         setPopularTVShows(response);
       } catch (error) {

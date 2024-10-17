@@ -4,6 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../../../AppProvider";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import "./SearchBar.css";
 
 const SearchBar = () => {
@@ -28,11 +29,6 @@ const SearchBar = () => {
 
   return (
     <Box className={`SearchBar ${isOpen ? "open" : ""}`}>
-      {!isOpen && (
-        <IconButton className="SearchButton" onClick={() => setIsOpen(true)}>
-          <SearchIcon />
-        </IconButton>
-      )}
       <Box className="SearchInput">
         <TextField
           variant="outlined"
@@ -55,6 +51,7 @@ const SearchBar = () => {
           <SearchIcon />
         </IconButton>
       )}
+      <NotificationsNoneIcon />
     </Box>
   );
 };
