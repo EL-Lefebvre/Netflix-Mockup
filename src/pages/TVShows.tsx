@@ -90,7 +90,7 @@ const TVShows = () => {
         </Box>
       )}
 
-      <div className="Layout">
+      <div className="LayoutHome">
         <FeatureSlider
           items={popularTVShows}
           genres={genres}
