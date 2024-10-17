@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField, IconButton, Box } from "@mui/material";
+import { TextField, IconButton, Box, useMediaQuery } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate } from "react-router-dom";
@@ -10,8 +10,10 @@ import "./SearchBar.css";
 const SearchBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [keyword, setKeyword] = useState("");
+
   const { searchMoviesByKeyword } = useAppContext();
   const navigate = useNavigate();
+  const isNotMobile = useMediaQuery("(min-width:600px)");
 
   const handleSearch = (newKeyword) => {
     setKeyword(newKeyword);
@@ -51,7 +53,7 @@ const SearchBar = () => {
           <SearchIcon />
         </IconButton>
       )}
-      <NotificationsNoneIcon />
+      {isNotMobile && <NotificationsNoneIcon />}
     </Box>
   );
 };

@@ -1,11 +1,11 @@
 
-.Layout {
+.LayoutResults {
     padding-left: 24px;
     padding-right: 24px;
   }
   
   @media (max-width: 1200px) {
-    .Layout {
+    .LayoutResults {
        
 height:100%;
       padding-top: 140px !important; 
@@ -14,7 +14,7 @@ height:100%;
     }
   }
   @media (max-width: 600px) {
-    .Layout {
+    .LayoutResults {
         box-sizing: border-box;
 
       padding-top: 140px; 

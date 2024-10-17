@@ -27,12 +27,10 @@ const SearchResults = () => {
 
   return (
     <div>
-      <div className="Layout" style={{ height: "100%", paddingTop: "20px" }}>
-        {/* <Box style={{ height: "150px" }}>
-          <Typography variant="h4" color={"white"}>
-            Results
-          </Typography>
-        </Box> */}
+      <div
+        className="LayoutResults"
+        style={{ height: "100%", paddingTop: "100px" }}
+      >
         <Grid
           container
           spacing={{ xs: 0, sm: 2 }}
@@ -45,9 +43,10 @@ const SearchResults = () => {
                 <Grid
                   item
                   xs={6}
-                  sm={6}
+                  sm={5}
                   md={4}
-                  lg={2}
+                  lg={3}
+                  xl={2}
                   sx={{ paddingBottom: 2 }}
                   key={movie.id}
                 >

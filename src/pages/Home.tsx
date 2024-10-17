@@ -92,7 +92,7 @@ const Home = () => {
         </Box>
       )}
 
-      <div className="Layout">
+      <div className="LayoutHome">
         <FeatureSlider
           items={popularMovies}
           genres={genres}

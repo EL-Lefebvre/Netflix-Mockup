@@ -82,7 +82,7 @@
 
     
     .SearchBar.open .SearchInput{
-        width: 70%;
+        width: 50%;
         /* transform: translateX(0);  */
     }
   }
